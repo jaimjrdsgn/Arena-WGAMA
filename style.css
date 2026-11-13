@@ -1,0 +1,931 @@
+/* Centraliza as cores do tema e a largura máxima; var(--nome) reutiliza esses valores. */
+:root {
+    --paper: #f7f5ef;
+    --white: #fffefa;
+    --ink: #202923;
+    --muted: #657069;
+    --green: #286b4c;
+    --lime: #c7e36c;
+    --line: #dfe4db;
+    --orange: #ef8057;
+    --max: 1160px;
+}
+
+/* Inclui bordas e preenchimentos no cálculo de largura e altura dos elementos. */
+* {
+    box-sizing: border-box;
+}
+
+/* Suaviza a rolagem ao navegar pelos links internos. */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Define a aparência padrão: fundo, cor do texto, fonte e altura das linhas. */
+body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    line-height: 1.55;
+}
+
+/* Faz os links herdarem a cor do contexto e remove o sublinhado padrão. */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Faz os botões usarem a mesma fonte do restante da página. */
+button {
+    font: inherit;
+}
+
+/* Centraliza o conteúdo, limita sua largura e mantém margens laterais. */
+.wrap {
+    width: min(var(--max), calc(100% - 48px));
+    margin: auto;
+}
+
+/* Distribui a marca e a navegação horizontalmente com Flexbox. */
+.topbar {
+    min-height: 140px;
+    padding-block: 12px;
+    gap: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--line);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 116px;
+    flex: 0 0 100px;
+    overflow: hidden;
+}
+
+.logo-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    font-family: Manrope, sans-serif;
+    font-weight: 800;
+    font-size: 15px;
+    letter-spacing: -.35px;
+}
+
+/* Desenha o símbolo da marca; o span interno compensa a rotação do fundo. */
+.brandmark {
+    width: 39px;
+    height: 39px;
+    border-radius: 50% 50% 50% 10px;
+    background: var(--green);
+    display: grid;
+    place-items: center;
+    color: var(--lime);
+    font-size: 22px;
+    transform: rotate(-8deg);
+}
+
+.brandmark span {
+    transform: rotate(8deg);
+}
+
+nav {
+    display: flex;
+    gap: 34px;
+    align-items: center;
+    margin-left: auto;
+    white-space: nowrap;
+    flex-shrink: 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: #46514a;
+}
+
+nav a:not(.nav-cta):hover {
+    color: var(--green);
+}
+
+/* Base compartilhada dos links com aparência de botão. */
+.nav-cta,
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-radius: 999px;
+    font-weight: 700;
+    transition: .2s ease;
+}
+
+.nav-cta {
+    background: var(--green);
+    color: white;
+    padding: 12px 20px;
+}
+
+.btn {
+    padding: 15px 23px;
+}
+
+/* Destaque principal dos botões com a cor lima do tema. */
+.btn-primary {
+    background: var(--lime);
+    color: #1d2b22;
+}
+
+.btn-primary:hover,
+.nav-cta:hover {
+    transform: translateY(-2px);
+    filter: brightness(.97);
+}
+
+/* Variação translúcida de botão para fundos escuros. */
+.btn-quiet {
+    border: 1px solid rgba(255, 255, 255, .55);
+    color: white;
+    background: rgba(255, 255, 255, .1);
+}
+
+.hero {
+    padding: 46px 0 76px;
+}
+
+/* Cria duas colunas proporcionais para o texto e a foto de apresentação. */
+.hero-grid {
+    display: grid;
+    grid-template-columns: .93fr 1.07fr;
+    gap: 48px;
+    align-items: center;
+}
+
+/* Estiliza o pequeno texto de identificação que aparece antes dos títulos. */
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    color: var(--green);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+}
+
+/* Cria o traço decorativo antes do texto sem adicionar uma tag no HTML. */
+.eyebrow:before {
+    content: '';
+    width: 24px;
+    height: 2px;
+    background: var(--orange);
+}
+
+/* Remove a margem superior padrão dos títulos e parágrafos. */
+h1,
+h2,
+h3,
+p {
+    margin-top: 0;
+}
+
+/* Compartilha a fonte e o espaçamento entre letras dos títulos. */
+h1,
+h2,
+h3 {
+    font-family: Manrope, sans-serif;
+    letter-spacing: -1.4px;
+}
+
+/* clamp define um tamanho fluido, limitado entre 42px e 69px. */
+h1 {
+    font-size: clamp(42px, 5.4vw, 69px);
+    line-height: 1.03;
+    margin: 22px 0 20px;
+    max-width: 540px;
+}
+
+h1 em {
+    font-style: normal;
+    color: var(--green);
+}
+
+.hero-copy {
+    font-size: 16px;
+    color: var(--muted);
+    max-width: 440px;
+    margin-bottom: 27px;
+}
+
+/* Agrupa os botões e permite que passem para outra linha quando necessário. */
+.actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.hero-note {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 35px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+/* Agrupa os ícones circulares; a margem negativa dos itens cria a sobreposição. */
+.avatars {
+    display: flex;
+    padding-left: 4px;
+}
+
+.avatars i {
+    width: 30px;
+    height: 30px;
+    margin-left: -4px;
+    border: 2px solid var(--paper);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: #e9ba9e;
+    font-style: normal;
+    font-size: 13px;
+}
+
+.avatars i:nth-child(2) {
+    background: #c6d6a2;
+}
+
+.avatars i:nth-child(3) {
+    background: #eacb73;
+}
+
+/* Exibe a foto como fundo; cover preenche a área e overflow recorta os cantos. */
+.hero-photo {
+    position: relative;
+    min-height: 480px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #537456 url('img/foto%201.jpeg') center 45%/cover;
+}
+
+/* Sobrepõe um degradê escuro à foto para facilitar a leitura da legenda. */
+.hero-photo:after {
+    content: '';
+    position: absolute;
+    inset: 45% 0 0;
+    background: linear-gradient(transparent, rgba(16, 35, 22, .72));
+}
+
+/* Posiciona a legenda sobre o degradê; z-index controla a ordem das camadas. */
+.photo-label {
+    position: absolute;
+    z-index: 1;
+    left: 27px;
+    bottom: 25px;
+    color: white;
+}
+
+.photo-label strong {
+    font-family: Manrope, sans-serif;
+    font-size: 19px;
+    display: block;
+}
+
+.photo-label span {
+    font-size: 12px;
+    opacity: .86;
+}
+
+/* Cria o selo circular inclinado no canto superior da foto. */
+.sticker {
+    position: absolute;
+    top: 22px;
+    right: 22px;
+    z-index: 1;
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    background: var(--lime);
+    display: grid;
+    place-items: center;
+    text-align: center;
+    font-size: 11px;
+    line-height: 1.2;
+    font-weight: 800;
+    transform: rotate(8deg);
+}
+
+.impact {
+    background: var(--green);
+    color: white;
+    padding: 22px 0;
+}
+
+/* Divide a faixa de impacto em três colunas de mesma largura. */
+.impact-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    text-align: center;
+}
+
+.impact-item {
+    padding: 8px 15px;
+    border-right: 1px solid rgba(255, 255, 255, .22);
+}
+
+/* Remove a borda do último item para evitar uma divisória externa. */
+.impact-item:last-child {
+    border: 0;
+}
+
+.impact-item strong {
+    display: block;
+    font-family: Manrope, sans-serif;
+    font-size: 14px;
+}
+
+.impact-item span {
+    font-size: 12px;
+    color: rgba(255, 255, 255, .72);
+}
+
+/* Reserva espaço acima da seção ao acessá-la por um link interno. */
+section {
+    scroll-margin-top: 26px;
+}
+
+.story {
+    padding: 98px 0 104px;
+}
+
+.section-head {
+    max-width: 620px;
+    margin-bottom: 42px;
+}
+
+.section-head h2 {
+    font-size: clamp(32px, 4vw, 46px);
+    line-height: 1.12;
+    margin: 14px 0;
+}
+
+.section-head p {
+    color: var(--muted);
+    font-size: 15px;
+    max-width: 560px;
+}
+
+/* Organiza os três cartões dos pilares em colunas iguais. */
+.pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 17px;
+}
+
+/* Define o fundo, a borda, o espaçamento interno e a altura mínima de cada cartão. */
+.pillar {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 15px;
+    padding: 24px;
+    min-height: 210px;
+}
+
+/* Centraliza o ícone em uma caixa com fundo e cantos arredondados. */
+.icon {
+    width: 43px;
+    height: 43px;
+    background: #edf3df;
+    color: var(--green);
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    font-size: 21px;
+    margin-bottom: 22px;
+}
+
+.pillar h3 {
+    font-size: 18px;
+    letter-spacing: -.4px;
+    margin-bottom: 8px;
+}
+
+.pillar p {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 0;
+}
+
+.about {
+    padding: 0 0 100px;
+}
+
+/* Divide o bloco da comunidade em duas colunas e recorta os cantos arredondados. */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: #e9eee4;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+/* Define a segunda foto como imagem de fundo, centralizada e cobrindo a área. */
+.about-visual {
+    min-height: 400px;
+    background: url('img/fotoadulto.jpeg') center/cover;
+}
+
+/* Empilha o conteúdo e o centraliza verticalmente dentro da coluna. */
+.about-copy {
+    padding: 54px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.about-copy h2 {
+    font-size: clamp(30px, 3.5vw, 42px);
+    line-height: 1.12;
+    margin: 14px 0;
+}
+
+.about-copy p {
+    color: #5c675e;
+    font-size: 14px;
+}
+
+.about-copy .btn {
+    align-self: flex-start;
+    margin-top: 7px;
+}
+
+.invite {
+    padding: 0 0 90px;
+}
+
+/* Organiza o texto e o botão da parceria sobre um fundo escuro. */
+.invite-card {
+    background: #202923;
+    color: white;
+    border-radius: 20px;
+    padding: 50px 54px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Adiciona um sinal de mais decorativo; pointer-events evita bloquear cliques. */
+.invite-card:after {
+    content: '+';
+    font-family: Manrope, sans-serif;
+    font-size: 250px;
+    line-height: 1;
+    color: rgba(199, 227, 108, .08);
+    position: absolute;
+    right: 30%;
+    top: -85px;
+    pointer-events: none;
+}
+
+.invite-copy {
+    max-width: 620px;
+    position: relative;
+    z-index: 1;
+}
+
+.invite h2 {
+    font-size: clamp(29px, 4vw, 43px);
+    line-height: 1.12;
+    margin: 13px 0;
+}
+
+.invite p {
+    color: #c4cec6;
+    margin: 0;
+    max-width: 530px;
+    font-size: 14px;
+}
+
+/* Mantém o texto do botão em uma linha e acima da decoração. */
+.invite .btn {
+    white-space: nowrap;
+    position: relative;
+    z-index: 1;
+}
+
+.contact {
+    padding: 70px 0 45px;
+    background: #e9eee4;
+}
+
+/* Alinha o início do bloco Conecte-se com o título do mapa à direita. */
+.contact-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 35px;
+    align-items: flex-start;
+}
+
+.contact h2 {
+    font-size: 32px;
+    margin: 12px 0 8px;
+}
+
+.contact p {
+    color: var(--muted);
+    font-size: 14px;
+    margin: 0;
+}
+
+.contact-actions {
+    display: flex;
+    gap: 11px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+}
+
+/* Botão verde escuro, com o mesmo destaque usado na navegação. */
+.btn-green {
+    background: var(--green);
+    color: var(--white);
+}
+
+.btn-green:hover {
+    transform: translateY(-2px);
+    filter: brightness(.97);
+}
+
+.contact-actions .btn:focus-visible {
+    outline: 2px solid var(--green);
+    outline-offset: 4px;
+}
+
+/* Variação de botão com borda e fundo transparente. */
+.btn-outline {
+    border: 1px solid #aab6a9;
+    color: var(--ink);
+}
+
+footer {
+    background: #e9eee4;
+    padding: 22px 0 32px;
+}
+
+/* Separa o rodapé com uma linha e distribui seus dois conteúdos. */
+.footer-line {
+    border-top: 1px solid #d2dbd0;
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+    color: #69746b;
+    font-size: 11px;
+}
+
+.footer-line a {
+    color: var(--green);
+    font-weight: 700;
+}
+
+/* Mantém os direitos autorais e o Instagram agrupados na coluna esquerda. */
+.footer-info {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 12px;
+    min-width: 0;
+}
+
+/* Reserva a coluna direita do rodapé para o título e o mapa da localização. */
+.footer-location {
+    flex: 0 1 420px;
+    width: 100%;
+    min-width: 0;
+}
+
+.footer-location h2 {
+    margin: 0 0 12px;
+    color: var(--ink);
+    font-size: 18px;
+    letter-spacing: -.4px;
+}
+
+/* Recorta o mapa nos cantos arredondados e mantém espaço antes de configurá-lo. */
+.footer-map {
+    display: grid;
+    place-items: center;
+    min-height: 220px;
+    overflow: hidden;
+    border: 1px solid #d2dbd0;
+    border-radius: 15px;
+    background: var(--paper);
+}
+
+/* O iframe incorporado ocupará toda a largura, inclusive no celular. */
+.footer-map iframe {
+    display: block;
+    width: 100%;
+    height: 220px;
+    border: 0;
+}
+
+/* Oferece acesso ao link original caso o visitante prefira abrir o mapa fora da página. */
+.footer-map-link {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 12px;
+}
+
+/* Oculta o atalho fixo no desktop; a regra para celulares o exibe. */
+.mobile-contact {
+    display: none;
+}
+
+/* Até 800px: reduz espaçamentos, oculta links secundários e empilha os blocos maiores. */
+@media (max-width: 800px) {
+    .wrap {
+        width: min(100% - 36px, var(--max));
+    }
+
+    .topbar {
+        min-height: 112px;
+    }
+
+    .logo {
+        width: 76px;
+        height: 88px;
+        flex-basis: 76px;
+    }
+
+    .brand {
+        font-size: 13px;
+    }
+
+    nav {
+        gap: 18px;
+    }
+
+    nav > a:not(.nav-cta) {
+        display: none;
+    }
+
+    .hero {
+        padding: 30px 0 52px;
+    }
+
+    .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .hero-photo {
+        min-height: 410px;
+        order: 2;
+    }
+
+    .hero-copy {
+        max-width: 560px;
+    }
+
+    .story {
+        padding: 72px 0;
+    }
+
+    .pillars {
+        gap: 11px;
+    }
+
+    .pillar {
+        padding: 19px;
+    }
+
+    .about {
+        padding-bottom: 72px;
+    }
+
+    .about-copy {
+        padding: 34px;
+    }
+
+    .invite {
+        padding-bottom: 70px;
+    }
+
+    .invite-card {
+        padding: 38px;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 22px;
+    }
+
+    .contact-grid {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    /* Com as colunas empilhadas, a altura do mapa depende de seu conteúdo. */
+    .contact-grid .footer-location {
+        flex: auto;
+    }
+
+    .contact {
+        padding-top: 54px;
+    }
+}
+
+/* Até 560px: ajusta fontes, transforma grades em uma coluna e mostra o contato fixo. */
+@media (max-width: 560px) {
+    .wrap {
+        width: calc(100% - 34px);
+    }
+
+    .topbar {
+        min-height: 112px;
+        gap: 12px;
+    }
+
+    .brandmark {
+        width: 34px;
+        height: 34px;
+    }
+
+    .nav-cta {
+        padding: 10px 14px;
+        font-size: 12px;
+    }
+
+    .hero {
+        padding-top: 28px;
+    }
+
+    .hero-grid {
+        gap: 25px;
+    }
+
+    h1 {
+        font-size: 43px;
+        margin: 17px 0;
+    }
+
+    .hero-copy {
+        font-size: 14px;
+    }
+
+    .actions .btn {
+        padding: 13px 17px;
+        font-size: 13px;
+    }
+
+    .hero-photo {
+        min-height: 350px;
+        border-radius: 15px;
+    }
+
+    .sticker {
+        width: 73px;
+        height: 73px;
+        right: 13px;
+        top: 14px;
+        font-size: 9px;
+    }
+
+    .photo-label {
+        left: 20px;
+        bottom: 18px;
+    }
+
+    .impact-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .impact-item {
+        border-right: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, .2);
+        padding: 12px;
+    }
+
+    .impact-item:last-child {
+        border: 0;
+    }
+
+    .story {
+        padding: 62px 0;
+    }
+
+    .section-head {
+        margin-bottom: 27px;
+    }
+
+    .section-head h2 {
+        font-size: 34px;
+    }
+
+    .pillars {
+        grid-template-columns: 1fr;
+    }
+
+    .pillar {
+        min-height: 0;
+        padding: 21px;
+    }
+
+    .icon {
+        margin-bottom: 15px;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-visual {
+        min-height: 260px;
+    }
+
+    .about-copy {
+        padding: 29px 24px 32px;
+    }
+
+    .invite-card {
+        padding: 30px 24px;
+    }
+
+    .invite h2 {
+        font-size: 32px;
+    }
+
+    .contact h2 {
+        font-size: 29px;
+    }
+
+    .contact-actions {
+        width: 100%;
+    }
+
+    .contact-actions .btn {
+        flex: 1;
+    }
+
+    .footer-line {
+        gap: 24px;
+        flex-direction: column;
+    }
+
+    /* Coloca o mapa abaixo das informações e remove a base flexível do desktop. */
+    .footer-location {
+        flex: auto;
+    }
+
+    .mobile-contact {
+        display: flex;
+        position: fixed;
+        z-index: 5;
+        left: 15px;
+        right: 15px;
+        bottom: 14px;
+        justify-content: center;
+        padding: 15px;
+        background: var(--green);
+        color: white;
+        border-radius: 999px;
+        box-shadow: 0 8px 25px rgba(22, 47, 30, .25);
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+    .contact {
+        padding-bottom: 95px;
+    }
+
+    footer {
+        padding-bottom: 84px;
+    }
+}
+
+/* Respeita a preferência do sistema por menos movimento, desativando transições e rolagem suave. */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *:before,
+    *:after {
+        transition: none !important;
+    }
+}
