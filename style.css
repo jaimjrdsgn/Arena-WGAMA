@@ -49,11 +49,29 @@ button {
 
 /* Distribui a marca e a navegação horizontalmente com Flexbox. */
 .topbar {
-    height: 82px;
+    min-height: 140px;
+    padding-block: 12px;
+    gap: 24px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid var(--line);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 116px;
+    flex: 0 0 100px;
+    overflow: hidden;
+}
+
+.logo-image {
+    display: block;
+    width: 100%;
+    height: 100%;
 }
 
 .brand {
@@ -87,6 +105,9 @@ nav {
     display: flex;
     gap: 34px;
     align-items: center;
+    margin-left: auto;
+    white-space: nowrap;
+    flex-shrink: 0;
     font-size: 13px;
     font-weight: 600;
     color: #46514a;
@@ -642,7 +663,13 @@ footer {
     }
 
     .topbar {
-        height: 70px;
+        min-height: 112px;
+    }
+
+    .logo {
+        width: 76px;
+        height: 88px;
+        flex-basis: 76px;
     }
 
     .brand {
@@ -728,7 +755,8 @@ footer {
     }
 
     .topbar {
-        height: 66px;
+        min-height: 112px;
+        gap: 12px;
     }
 
     .brandmark {
